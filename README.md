@@ -1,5 +1,7 @@
 # playlist-extract-pipeline
 
+[![tests](https://github.com/svx2027/playlist-extract-pipeline/actions/workflows/tests.yml/badge.svg)](https://github.com/svx2027/playlist-extract-pipeline/actions/workflows/tests.yml)
+
 Turn your own YouTube playlists (created playlists, Watch Later, Liked videos)
 into a clean, structured dataset -- metadata, thumbnails, and transcripts --
 and optionally into an editable "content brain" workbook for mining ideas out
@@ -160,6 +162,24 @@ yellow-highlighted editable columns (`Liked?`, `Recreate?`, `My twist`,
   garbage-sized for its video's length. `docs/EXTRACTION_PIPELINE_PLAYBOOK.md`
   section 6 has the full checklist -- this is what `phase2_repair.py` is
   meant to be run against.
+
+## Tests
+
+```bash
+.venv/bin/python -m unittest discover -s tests -v
+```
+
+49 pure-function tests, no network calls, no yt-dlp, no ffmpeg. They pin the
+rules that are easy to get subtly wrong on a re-read: the short-vs-long
+classification (including its aspect-ratio fallback when width/height are
+missing), the availability/error-text status mapping, transcript language and
+format selection (original-language preference, the English fallback, the
+pseudo-track filter for live-chat/rechat), and the two caption parsers
+(`parse_json3` / `parse_vtt`, including their consecutive-line dedup and
+HTML-garbage detection). What's deliberately **not** covered here: the actual
+`yt-dlp` calls, file I/O, and the bot-detection stop signal -- those need a
+real (or believably faked) network layer to test meaningfully and aren't pure
+functions.
 
 ## Adapting this to another platform
 
