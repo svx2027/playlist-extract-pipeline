@@ -189,3 +189,14 @@ ASR, thumbnail signing, bot-detection sensitivity) while keeping the file
 formats and verification discipline identical. The principles in sections
 1-8 are written to be platform-agnostic; only the fetch layer is
 YouTube-specific.
+
+## Related tools
+
+- [ig-taste-engine](https://github.com/svx2027/ig-taste-engine): that Instagram
+  port, built from the translation table above — your own saved reels instead
+  of your own playlists.
+- [livestream-clip-cutter](https://github.com/svx2027/livestream-clip-cutter):
+  a sibling media pipeline for one long YouTube livestream instead of a whole
+  playlist.
+
+Full index of all public repos: [github.com/svx2027](https://github.com/svx2027).
